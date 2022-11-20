@@ -8,14 +8,6 @@ import SimpleDialog from './SimpleDialog';
 export default function Task({ task, onDelete }) {
     const [isComplete, setComplete] = useState(false)
 
-    // const handleChange = (id) => { 
-
-    //     toggleEdit(id);
-    //     console.log('The checkbox was toggled and val is', task.isComplete); 
-    // }; 
-
-    // const showUpdate = task.isComplete;
-
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -46,8 +38,6 @@ export default function Task({ task, onDelete }) {
                 <div className='form-control form-control-check'>
                     <input type='checkbox'  onChange={(e) =>
                     setComplete(e.currentTarget.checked) 
-                    //toggleEdit(task.id)}/>
-                    //toggleEdit(e.currentTarget.checked, task.id)} />
                     } /> 
                 </div>
             </TableCell>

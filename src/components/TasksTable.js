@@ -33,7 +33,7 @@ export default function TasksTable({ tasks, onDelete }) {
         </TableHead>
         <TableBody>
           {tasks.map((task) =>(
-                  <Task key={task.id} task={task} onDelete={onDelete} /> //toggleEdit={toggleEdit} />//key={Math.floor(Math.random() * 10000 + 1)}  onDelete={onDelete} onToggle={onToggle} />
+                  <Task key={task.id} task={task} onDelete={onDelete} /> 
               ))}
         </TableBody>
       </Table>

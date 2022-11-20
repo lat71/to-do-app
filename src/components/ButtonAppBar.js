@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SimpleDialog from './SimpleDialog';
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar({ tasks }) {
 
     const [open, setOpen] = React.useState(false);
 
@@ -19,6 +19,15 @@ export default function ButtonAppBar() {
 
     const handleClose = (value) => {
         setOpen(false);
+    };
+
+    // Return false if is already a title for a different item 
+    const checkTitles = (titleToCheck) => {
+        let currTitle = true;
+        tasks.map((task) => 
+            task.title === titleToCheck ? (currTitle = false) : (currTitle = currTitle)        
+        );
+        return currTitle;
     };
 
     return (
@@ -46,6 +55,7 @@ export default function ButtonAppBar() {
         title="Add"
         titleIcon= "fa fa-plus-circle"
         allowTitle= {true}
+        checkTitles= {checkTitles}
         open={open}
         onClose={handleClose}
         />

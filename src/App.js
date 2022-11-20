@@ -14,14 +14,14 @@ function App() {
       title: 'Doctors Appointment',
       description: 'desc1',
       deadline: "2002-09-21",
-      priority: 'low',
+      priority: 'Low',
     },
     {
       id: 2,
       title: 'title02',
       description: 'desc2',
       deadline: "2002-09-21",
-      priority: 'high',
+      priority: 'High',
     },
   ])
 
@@ -41,8 +41,8 @@ function App() {
 
   return (
     <div className="App">
-      <ButtonAppBar />
-      <TasksTable tasks={tasks} onDelete={deleteTask} /> {/*toggleEdit={toggleEdit} /> */}
+      <ButtonAppBar tasks={tasks}/>
+      <TasksTable tasks={tasks} onDelete={deleteTask} />
     </div>
   );
 }

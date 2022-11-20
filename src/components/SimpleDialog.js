@@ -11,26 +11,68 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
+import * as React from 'react';
 
 export default function SimpleDialog(props) {
-    const { title, titleIcon, allowTitle, onClose, open, task } = props;
+    const { title, titleIcon, allowTitle, checkTitles, onClose, open, task } = props;
+
+    const [newTitle, setTitles] = React.useState({
+        name: ""
+    });
+
+    const [desc, setDesc] = React.useState({
+        setDesc: (task === undefined ? "" : task.description)
+    });
+    
+    const handleDescChange = setTo => event => {
+        console.log(desc.setDesc)
+        setDesc({...desc, [setTo]: event.target.value });
+        newDesc = desc.setDesc;
+        console.log(desc.setDesc)
+    };
+
+    const handleTitleChange = setTo => event => {
+        setTitles({ ...newTitle, [setTo]: event.target.value });
+        setTitle = newTitle.name;
+        console.log(newTitle)
+    };
 
     let noTask = task === undefined;
+    let setTitle= ""
     let newDesc = ""
     let newDate = ""
     let priority = noTask ? "" : task.priority
 
     const handleClose = () => {
+        // console.log("SET DESC IS: ", desc.setDesc)
+        // console.log(typeof(desc))
+        // console.log(desc.setDesc.toString())
+        console.log(validateForm() === false ? "FALSE! Form vlaidation FAILED" : "TRUE! VALIDATION PASSED")
         if (noTask) {
             console.log("NO TASK");
         }
         else {
             task.deadline = (newDate === "" ? task.deadline : newDate);
             task.priority = priority;
-            task.description = (newDesc === "" ? task.description : newDesc);
+            task.description = (desc.setDesc.toString() === "" ? task.description : desc.setDesc.toString());
         }
         onClose();
     };
+
+    const validateForm = () => {
+        let titleValid = noTask ? false : true;
+
+        if (noTask) {
+            setTitle = newTitle.name.toString();
+            titleValid = (setTitle === "" ? false : checkTitles(setTitle));
+            // titleValid ? "" : ()
+        }
+        console.log("Validating form!")
+        return (titleValid && (newDesc !== "") && (newDate !== "") && (priority !== ""))
+    }
+
+    const titleError = newTitle.name === "";
+    const descError = desc.setDesc === "";
 
     return (
       <Dialog onClose={onClose} open={open}>
@@ -51,7 +93,14 @@ export default function SimpleDialog(props) {
             autoComplete="off">
             <Stack justifyContent="center" alignItems="center">
                 {allowTitle && 
-                <TextField id="outlined-required" label="Title" placeholder="Enter a Title" />
+                <TextField id="outlined-required" label="Title" placeholder="Enter a Title"
+                    onChange={handleTitleChange("name")}    
+                // onChange={(e) => {
+                    //     handleChange("name");
+                    //     setTitle = e.target.value;
+                    // }}
+                    helperText={titleError ? "Title is Required and must be unique!" : ""}
+                    error={titleError}/>
                 }
                 <TextField
                 id="outlined-required"
@@ -59,15 +108,18 @@ export default function SimpleDialog(props) {
                 placeholder='Enter a Description'
                 defaultValue={noTask ? "" : task.description}
                 margin='normal'
-                onChange={(e) => {
-                    newDesc = e.target.value;
-                }}
+                onChange={handleDescChange("setDesc")}
+                // onChange={(e) => {
+                //     newDesc = e.target.value;
+                // }}
+                helperText={descError ? "Description is required" : ""}
+                error={descError}
                 />
                 <TextField
                     id="date"
                     label="Deadline"
                     type="date"
-                    defaultValue={noTask ? "2022-11-21" : task.deadline}
+                    defaultValue={noTask ? "" : task.deadline}
                     sx={{ width: 220 }}
                     InputLabelProps={{
                     shrink: true,
