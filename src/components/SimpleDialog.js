@@ -15,12 +15,22 @@ import FormLabel from '@mui/material/FormLabel';
 export default function SimpleDialog(props) {
     const { title, titleIcon, allowTitle, onClose, open, task } = props;
 
-    const handleClose = () => {
-      onClose();
-    };
-  
-    let newDate = ""
     let noTask = task === undefined;
+    let newDesc = ""
+    let newDate = ""
+    let priority = noTask ? "" : task.priority
+
+    const handleClose = () => {
+        if (noTask) {
+            console.log("NO TASK");
+        }
+        else {
+            task.deadline = (newDate === "" ? task.deadline : newDate);
+            task.priority = priority;
+            task.description = (newDesc === "" ? task.description : newDesc);
+        }
+        onClose();
+    };
 
     return (
       <Dialog onClose={onClose} open={open}>
@@ -49,6 +59,9 @@ export default function SimpleDialog(props) {
                 placeholder='Enter a Description'
                 defaultValue={noTask ? "" : task.description}
                 margin='normal'
+                onChange={(e) => {
+                    newDesc = e.target.value;
+                }}
                 />
                 <TextField
                     id="date"
@@ -59,18 +72,18 @@ export default function SimpleDialog(props) {
                     InputLabelProps={{
                     shrink: true,
                     }}
-                    onChange={(e) => {{
-                        // console.log(e.target.value);
+                    onChange={(e) => {
                         newDate = e.target.value;
-                        // task === undefined ? console.log("No Task") : console.log(task)
-                        // task === undefined ? console.log("") : task.deadline = newDate
-                    }}}
+                    }}
                 />
                 <FormLabel id="radio-group-label" >Priority</FormLabel>
                 <RadioGroup
                     row
                     aria-labelledby="row-radio-buttons-group-label"
                     name="row-radio-buttons"
+                    onChange={(e) => {
+                        priority = e.target.value;
+                    }}
                 >
                     <FormControlLabel value="Low" control={<Radio />} label="Low" />
                     <FormControlLabel value="Med" control={<Radio />} label="Med" />
