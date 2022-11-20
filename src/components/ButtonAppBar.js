@@ -7,7 +7,6 @@ import Button from '@mui/material/Button';
 import Icon from '@mui/material/Icon';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import "font-awesome/css/font-awesome.css";
 
 export default function ButtonAppBar() {
 
