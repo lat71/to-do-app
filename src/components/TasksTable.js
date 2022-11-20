@@ -8,16 +8,16 @@ import TableRow from '@mui/material/TableRow';
 import Task from './Task'
 import Paper from '@mui/material/Paper';
 
-function createData(title, description, deadline, priority, isComplete) {
-  return { title, description, deadline, priority, isComplete};
-}
+// function createData(title, description, deadline, priority, isComplete) {
+//   return { title, description, deadline, priority, isComplete};
+// }
 
-const rows = [
-    createData('title01', 'description1', '02/23/22', 'low', 'false'),
-    createData('title02', 'description2', '02/25/22', 'high', 'false'),
-  ];
+// const tasks = [
+//     createData('title01', 'description1', '02/23/22', 'low', 'false'),
+//     createData('title02', 'description2', '02/25/22', 'high', 'false'),
+//   ];
 
-export default function TasksTable() {
+export default function TasksTable({ tasks, toggleEdit }) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -32,8 +32,8 @@ export default function TasksTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((task) =>(
-                  <Task key={Math.floor(Math.random() * 10000 + 1)} task={task} />// onDelete={onDelete} onToggle={onToggle} />
+          {tasks.map((task) =>(
+                  <Task key={task.id} task={task} toggleEdit={toggleEdit} />//key={Math.floor(Math.random() * 10000 + 1)}  onDelete={onDelete} onToggle={onToggle} />
               ))}
         </TableBody>
       </Table>
