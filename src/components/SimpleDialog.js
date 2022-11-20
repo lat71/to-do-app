@@ -11,10 +11,11 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
+import * as React from 'react'
 
 export default function SimpleDialog(props) {
     const { title, titleIcon, allowTitle, onClose, open } = props;
-  
+
     const handleClose = () => {
       onClose();
     };
@@ -37,20 +38,29 @@ export default function SimpleDialog(props) {
             noValidate
             autoComplete="off">
             <Stack justifyContent="center" alignItems="center">
+                {allowTitle && 
+                <TextField id="outlined-required" label="Title" placeholder="Enter a Title" />
+                }
                 <TextField
                 id="outlined-required"
                 label="Description"
-                // defaultValue="Enter a Description"
                 placeholder='Enter a Description'
                 margin='normal'
                 />
                 <TextField
-                id="outlined-required"
-                label="Deadline"
-                placeholder="Fix this w calendar"
-                margin="none"
+                    id="date"
+                    label="Deadline"
+                    type="date"
+                    defaultValue="2022-11-21"
+                    sx={{ width: 220 }}
+                    InputLabelProps={{
+                    shrink: true,
+                    }}
+                    onChange={(e) => {{
+                        console.log(e.target.value);
+                    }}}
                 />
-                <FormLabel id="radio-group-label" labelPlacement="Left">Priority</FormLabel>
+                <FormLabel id="radio-group-label" >Priority</FormLabel>
                 <RadioGroup
                     row
                     aria-labelledby="row-radio-buttons-group-label"

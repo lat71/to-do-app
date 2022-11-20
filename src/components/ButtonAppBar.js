@@ -45,6 +45,7 @@ export default function ButtonAppBar() {
         <SimpleDialog
         title="Add"
         titleIcon= "fa fa-plus-circle"
+        allowTitle= {true}
         open={open}
         onClose={handleClose}
         />
