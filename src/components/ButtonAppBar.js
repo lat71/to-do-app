@@ -12,7 +12,6 @@ import SimpleDialog from './SimpleDialog';
 export default function ButtonAppBar() {
 
     const [open, setOpen] = React.useState(false);
-    const [selectedValue, setSelectedValue] = React.useState();
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -20,33 +19,32 @@ export default function ButtonAppBar() {
 
     const handleClose = (value) => {
         setOpen(false);
-        setSelectedValue(value);
     };
 
     return (
         <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
             <Toolbar>
-            <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ ml: 60, mr: -1 }}
-            >
-                <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                FRAMEWORKS
-            </Typography>
-            <Button variant="contained" color="primary" 
-                    startIcon={<Icon className={"fa fa-plus-circle"} />}
-                    onClick={handleClickOpen}>Add</Button>
+                <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    sx={{ ml: 60, mr: -1 }}
+                >
+                    <MenuIcon />
+                </IconButton>
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    FRAMEWORKS
+                </Typography>
+                <Button variant="contained" color="primary" 
+                        startIcon={<Icon className={"fa fa-plus-circle"} />}
+                        onClick={handleClickOpen}>Add</Button>
             </Toolbar>
         </AppBar>
         <SimpleDialog
         title="Add"
-        selectedValue={selectedValue}
+        titleIcon= "fa fa-plus-circle"
         open={open}
         onClose={handleClose}
         />

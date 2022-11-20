@@ -19,3 +19,9 @@ code {
   padding: 5px;
   border-radius: 0px;
 }
+
+.dialogBtnsContainer {
+  margin-left: 70px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
