@@ -1,5 +1,6 @@
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
+import Button from '@mui/material/Button';
 
 export default function Task({ task }) {
 
@@ -13,7 +14,10 @@ export default function Task({ task }) {
         <TableCell align="center">{task.priority}</TableCell>
         <TableCell align="center">{task.isComplete}</TableCell>
         <TableCell align="center">
-        
+            <div className="container">
+                <Button variant="contained" color="primary">Update</Button>
+                <Button variant="contained" color="error">Delete</Button>
+            </div>
         </TableCell>
         </TableRow>
     );
