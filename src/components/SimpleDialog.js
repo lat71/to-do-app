@@ -4,6 +4,8 @@ import Icon from '@mui/material/Icon';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 export default function SimpleDialog(props) {
     const { title, titleIcon, allowTitle, onClose, open } = props;
@@ -22,7 +24,30 @@ export default function SimpleDialog(props) {
             </Typography>
             </Toolbar>
         </AppBar>
-        Testing
+        <Box
+            component="form"
+            sx={{
+            '& .MuiTextField-root': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off">
+            <div>
+                <TextField
+                id="outlined-required"
+                label="Description"
+                // defaultValue="Enter a Description"
+                placeholder='Enter a Description'
+                margin='normal'
+                />
+                <br/>
+                <TextField
+                id="outlined-required"
+                label="Deadline"
+                placeholder="Fix this w calendar"
+                />
+                <br/>
+            </div>
+        </Box>
         <div className='dialogBtnsContainer'>
             <Button variant="contained" color="primary" 
                     startIcon={<Icon className={titleIcon} />}
