@@ -10,7 +10,7 @@ import Stack from '@mui/material/Stack';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-
+import FormLabel from '@mui/material/FormLabel';
 
 export default function SimpleDialog(props) {
     const { title, titleIcon, allowTitle, onClose, open } = props;
@@ -50,6 +50,7 @@ export default function SimpleDialog(props) {
                 placeholder="Fix this w calendar"
                 margin="none"
                 />
+                <FormLabel id="radio-group-label" labelPlacement="Left">Priority</FormLabel>
                 <RadioGroup
                     row
                     aria-labelledby="row-radio-buttons-group-label"
