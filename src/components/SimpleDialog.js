@@ -11,15 +11,17 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
-import * as React from 'react'
 
 export default function SimpleDialog(props) {
-    const { title, titleIcon, allowTitle, onClose, open } = props;
+    const { title, titleIcon, allowTitle, onClose, open, task } = props;
 
     const handleClose = () => {
       onClose();
     };
   
+    let newDate = ""
+    let noTask = task === undefined;
+
     return (
       <Dialog onClose={onClose} open={open}>
         <AppBar sx={{ maxHeight: 50, minWidth: 250,  position: 'relative' }}>
@@ -27,7 +29,7 @@ export default function SimpleDialog(props) {
                 <Icon className={titleIcon} sx={{ mr: 1 }}/>
                 <Typography sx={{ ml: 0,}} >
                     {title}
-            </Typography>
+                </Typography>
             </Toolbar>
         </AppBar>
         <Box
@@ -45,19 +47,23 @@ export default function SimpleDialog(props) {
                 id="outlined-required"
                 label="Description"
                 placeholder='Enter a Description'
+                defaultValue={noTask ? "" : task.description}
                 margin='normal'
                 />
                 <TextField
                     id="date"
                     label="Deadline"
                     type="date"
-                    defaultValue="2022-11-21"
+                    defaultValue={noTask ? "2022-11-21" : task.deadline}
                     sx={{ width: 220 }}
                     InputLabelProps={{
                     shrink: true,
                     }}
                     onChange={(e) => {{
-                        console.log(e.target.value);
+                        // console.log(e.target.value);
+                        newDate = e.target.value;
+                        // task === undefined ? console.log("No Task") : console.log(task)
+                        // task === undefined ? console.log("") : task.deadline = newDate
                     }}}
                 />
                 <FormLabel id="radio-group-label" >Priority</FormLabel>

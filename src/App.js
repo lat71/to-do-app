@@ -13,14 +13,14 @@ function App() {
       id: 1,
       title: 'Doctors Appointment',
       description: 'desc1',
-      deadline: '02/23/22',
+      deadline: "2002-09-21",
       priority: 'low',
     },
     {
       id: 2,
       title: 'title02',
       description: 'desc2',
-      deadline: '02/25/22',
+      deadline: "2002-09-21",
       priority: 'high',
     },
   ])

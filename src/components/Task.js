@@ -33,6 +33,7 @@ export default function Task({ task, onDelete }) {
         titleIcon="fa fa-edit"
         open={open}
         onClose={handleClose}
+        task={task}
         />
         <TableRow
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
