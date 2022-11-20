@@ -4,7 +4,7 @@ import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
 import Icon from '@mui/material/Icon';
 
-export default function Task({ task }) {
+export default function Task({ task, onDelete }) {
     const [isComplete, setComplete] = useState(false)
 
     // const handleChange = (id) => { 
@@ -38,7 +38,9 @@ export default function Task({ task }) {
                     <Button variant="contained" color="primary" startIcon={<Icon className={"fa fa-edit"} />}>Update</Button>
                     ) : (" ")
                 }
-                <Button variant="contained" color="error" startIcon={<Icon className={"fa fa-times-circle"} />}>Delete</Button>
+                <Button variant="contained" color="error" 
+                startIcon={<Icon className={"fa fa-times-circle"}/>} 
+                onClick={() => onDelete(task.id)}>Delete</Button>
             </div>
         </TableCell>
         </TableRow>

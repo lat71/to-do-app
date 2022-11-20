@@ -28,19 +28,16 @@ function App() {
     setTasks([...tasks, newTask])
   }
 
-  // Toggle Edit Button
-  // const toggleEdit = (checked, id) => {
-  //   setTasks(
-  //     tasks.map((task) => 
-  //       task.id === id ? {...task, isComplete: !task.isComplete} : task
-  //       )
-  //     )
-  // }
+  // Delete Task
+  const deleteTask = (id) => {
+    // This filters out our tasks in Task based off their task.id and the id passed in
+    setTasks(tasks.filter((task) => task.id !== id))
+  }
 
   return (
     <div className="App">
       <ButtonAppBar />
-      <TasksTable tasks={tasks} /> {/*toggleEdit={toggleEdit} /> */}
+      <TasksTable tasks={tasks} onDelete={deleteTask} /> {/*toggleEdit={toggleEdit} /> */}
     </div>
   );
 }
