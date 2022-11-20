@@ -6,6 +6,11 @@ import Typography from '@mui/material/Typography';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+
 
 export default function SimpleDialog(props) {
     const { title, titleIcon, allowTitle, onClose, open } = props;
@@ -31,7 +36,7 @@ export default function SimpleDialog(props) {
             }}
             noValidate
             autoComplete="off">
-            <div>
+            <Stack justifyContent="center" alignItems="center">
                 <TextField
                 id="outlined-required"
                 label="Description"
@@ -39,23 +44,31 @@ export default function SimpleDialog(props) {
                 placeholder='Enter a Description'
                 margin='normal'
                 />
-                <br/>
                 <TextField
                 id="outlined-required"
                 label="Deadline"
                 placeholder="Fix this w calendar"
+                margin="none"
                 />
-                <br/>
-            </div>
+                <RadioGroup
+                    row
+                    aria-labelledby="row-radio-buttons-group-label"
+                    name="row-radio-buttons"
+                >
+                    <FormControlLabel value="Low" control={<Radio />} label="Low" />
+                    <FormControlLabel value="Med" control={<Radio />} label="Med" />
+                    <FormControlLabel value="High" control={<Radio />} label="High" />
+                </RadioGroup>
+            </Stack>
         </Box>
-        <div className='dialogBtnsContainer'>
+        <Stack direction="row" spacing={1} className='dialogBtnsContainer'>
             <Button variant="contained" color="primary" 
                     startIcon={<Icon className={titleIcon} />}
                     onClick={handleClose}>{title}</Button>
             <Button variant="contained" color="error" 
                     startIcon={<Icon className={"fa fa-ban"} />}
                     onClick={onClose}>Cancel</Button>
-        </div>
+        </Stack>
       </Dialog>
     );
   }
