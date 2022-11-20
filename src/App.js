@@ -11,7 +11,6 @@ function App() {
       description: 'desc1',
       deadline: '02/23/22',
       priority: 'low',
-      isComplete: false,
     },
     {
       id: 2,
@@ -19,7 +18,6 @@ function App() {
       description: 'desc2',
       deadline: '02/25/22',
       priority: 'high',
-      isComplete: false,
     },
   ])
 
@@ -31,18 +29,18 @@ function App() {
   }
 
   // Toggle Edit Button
-  const toggleEdit = (id) => {
-    setTasks(
-      tasks.map((task) => 
-        task.id === id ? {...task, isComplete: !task.isComplete} : task
-        )
-      )
-  }
+  // const toggleEdit = (checked, id) => {
+  //   setTasks(
+  //     tasks.map((task) => 
+  //       task.id === id ? {...task, isComplete: !task.isComplete} : task
+  //       )
+  //     )
+  // }
 
   return (
     <div className="App">
       <ButtonAppBar />
-      <TasksTable tasks={tasks} toggleEdit={toggleEdit} /> 
+      <TasksTable tasks={tasks} /> {/*toggleEdit={toggleEdit} /> */}
     </div>
   );
 }

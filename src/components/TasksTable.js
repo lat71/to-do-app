@@ -17,7 +17,7 @@ import Paper from '@mui/material/Paper';
 //     createData('title02', 'description2', '02/25/22', 'high', 'false'),
 //   ];
 
-export default function TasksTable({ tasks, toggleEdit }) {
+export default function TasksTable({ tasks }) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -33,7 +33,7 @@ export default function TasksTable({ tasks, toggleEdit }) {
         </TableHead>
         <TableBody>
           {tasks.map((task) =>(
-                  <Task key={task.id} task={task} toggleEdit={toggleEdit} />//key={Math.floor(Math.random() * 10000 + 1)}  onDelete={onDelete} onToggle={onToggle} />
+                  <Task key={task.id} task={task} /> //toggleEdit={toggleEdit} />//key={Math.floor(Math.random() * 10000 + 1)}  onDelete={onDelete} onToggle={onToggle} />
               ))}
         </TableBody>
       </Table>
