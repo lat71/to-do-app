@@ -8,15 +8,6 @@ import TableRow from '@mui/material/TableRow';
 import Task from './Task'
 import Paper from '@mui/material/Paper';
 
-// function createData(title, description, deadline, priority, isComplete) {
-//   return { title, description, deadline, priority, isComplete};
-// }
-
-// const tasks = [
-//     createData('title01', 'description1', '02/23/22', 'low', 'false'),
-//     createData('title02', 'description2', '02/25/22', 'high', 'false'),
-//   ];
-
 export default function TasksTable({ tasks, onDelete }) {
   return (
     <TableContainer component={Paper}>

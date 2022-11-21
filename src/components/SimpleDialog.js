@@ -27,27 +27,20 @@ export default function SimpleDialog(props) {
     });
     
     const handleDescChange = setTo => event => {
-        // console.log(desc.setDesc)
         setDesc({...desc, [setTo]: event.target.value });
-        // newDesc = desc.setDesc.toString();
-        // console.log(desc.setDesc)
     };
 
     const handleTitleChange = setTo => event => {
         setTitles({ ...newTitle, [setTo]: event.target.value });
-        // setTitle = newTitle.name;
-        // console.log(newTitle)
     };
 
     let noTask = task === undefined;
     let setTitle= ""
-    let newDesc = ""
     let newDate = noTask ? "" : task.deadline
     let priority = noTask ? "" : task.priority
 
     const handleClose = () => {
         let isValid = validateForm()
-        console.log(validateForm() === false ? "FALSE! Form vlaidation FAILED" : "TRUE! VALIDATION PASSED")
         if (!isValid) { 
             return; }
         if (noTask) {
@@ -100,10 +93,6 @@ export default function SimpleDialog(props) {
                 {allowTitle && 
                 <TextField id="outlined-required" label="Title" placeholder="Enter a Title"
                     onChange={handleTitleChange("name")}    
-                // onChange={(e) => {
-                    //     handleChange("name");
-                    //     setTitle = e.target.value;
-                    // }}
                     helperText={titleError ? "Title is Required and must be unique!" : ""}
                     error={titleError}/>
                 }
@@ -114,9 +103,6 @@ export default function SimpleDialog(props) {
                 defaultValue={noTask ? "" : task.description}
                 margin='normal'
                 onChange={handleDescChange("setDesc")}
-                // onChange={(e) => {
-                //     newDesc = e.target.value;
-                // }}
                 helperText={descError ? "Description is required" : ""}
                 error={descError}
                 />

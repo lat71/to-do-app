@@ -8,22 +8,7 @@ import 'reactjs-toastr/lib/toast.css';
 
 function App() {
 
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: 'Doctors Appointment',
-      description: 'desc1',
-      deadline: "2002-09-21",
-      priority: 'Low',
-    },
-    {
-      id: 2,
-      title: 'title02',
-      description: 'desc2',
-      deadline: "2002-09-21",
-      priority: 'High',
-    },
-  ])
+  const [tasks, setTasks] = useState([])
 
   // Add Task {title, description, deadline, priority}
   const addTask = (task) => {
