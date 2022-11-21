@@ -25,8 +25,9 @@ function App() {
     },
   ])
 
-  // Add Task
+  // Add Task {title, description, deadline, priority}
   const addTask = (task) => {
+    console.log("TASK ADDED IS: ", task)
     const id = Math.floor(Math.random() * 10000 + 1);
     const newTask = { id, ...task }
     setTasks([...tasks, newTask])
@@ -41,7 +42,7 @@ function App() {
 
   return (
     <div className="App">
-      <ButtonAppBar tasks={tasks}/>
+      <ButtonAppBar tasks={tasks} onAdd={addTask}/>
       <TasksTable tasks={tasks} onDelete={deleteTask} />
     </div>
   );

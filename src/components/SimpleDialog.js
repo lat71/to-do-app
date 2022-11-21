@@ -16,7 +16,7 @@ import 'reactjs-toastr/lib/toast.css';
 import * as React from 'react';
 
 export default function SimpleDialog(props) {
-    const { title, titleIcon, allowTitle, checkTitles, onClose, open, task } = props;
+    const { title, titleIcon, allowTitle, checkTitles, onClose, open, task, onAdd } = props;
 
     const [newTitle, setTitles] = React.useState({
         name: ""
@@ -51,13 +51,14 @@ export default function SimpleDialog(props) {
         if (!isValid) { 
             return; }
         if (noTask) {
-            console.log("NO TASK");
-            newTitle.name = ""
-            desc.setDesc = ""
+            let title = newTitle.name;
+            let description = desc.setDesc;
+            let deadline = newDate.toString()
+            onAdd({title, description, deadline, priority})
             toastr["success"]("Task succesfully added", "");
         }
         else {
-            task.deadline = newDate//(newDate === "" ? task.deadline : newDate);
+            task.deadline = newDate
             task.priority = priority;
             task.description = (desc.setDesc.toString() === "" ? task.description : desc.setDesc.toString());
             toastr["success"]("Task succesfully updated", "");
@@ -71,12 +72,7 @@ export default function SimpleDialog(props) {
         if (noTask) {
             setTitle = newTitle.name.toString();
             titleValid = (setTitle === "" ? false : checkTitles(setTitle));
-            // titleValid ? "" : ()
         }
-        // console.log("Validating form!")
-        // console.log((titleValid))
-        // console.log(desc.setDesc.toString() !== "")
-        // console.log(newDate)
         return (titleValid && (desc.setDesc.toString() !== "") && (newDate !== "") && (priority !== ""))
     }
 

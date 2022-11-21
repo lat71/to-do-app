@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SimpleDialog from './SimpleDialog';
 
-export default function ButtonAppBar({ tasks }) {
+export default function ButtonAppBar({ tasks, onAdd }) {
 
     const [open, setOpen] = React.useState(false);
 
@@ -58,6 +58,7 @@ export default function ButtonAppBar({ tasks }) {
         checkTitles= {checkTitles}
         open={open}
         onClose={handleClose}
+        onAdd={onAdd}
         />
         </Box>
     );
