@@ -11,6 +11,8 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
+import toastr from 'toastr';
+import 'reactjs-toastr/lib/toast.css';
 import * as React from 'react';
 
 export default function SimpleDialog(props) {
@@ -25,36 +27,40 @@ export default function SimpleDialog(props) {
     });
     
     const handleDescChange = setTo => event => {
-        console.log(desc.setDesc)
+        // console.log(desc.setDesc)
         setDesc({...desc, [setTo]: event.target.value });
-        newDesc = desc.setDesc;
-        console.log(desc.setDesc)
+        // newDesc = desc.setDesc.toString();
+        // console.log(desc.setDesc)
     };
 
     const handleTitleChange = setTo => event => {
         setTitles({ ...newTitle, [setTo]: event.target.value });
-        setTitle = newTitle.name;
-        console.log(newTitle)
+        // setTitle = newTitle.name;
+        // console.log(newTitle)
     };
 
     let noTask = task === undefined;
     let setTitle= ""
     let newDesc = ""
-    let newDate = ""
+    let newDate = noTask ? "" : task.deadline
     let priority = noTask ? "" : task.priority
 
     const handleClose = () => {
-        // console.log("SET DESC IS: ", desc.setDesc)
-        // console.log(typeof(desc))
-        // console.log(desc.setDesc.toString())
+        let isValid = validateForm()
         console.log(validateForm() === false ? "FALSE! Form vlaidation FAILED" : "TRUE! VALIDATION PASSED")
+        if (!isValid) { 
+            return; }
         if (noTask) {
             console.log("NO TASK");
+            newTitle.name = ""
+            desc.setDesc = ""
+            toastr["success"]("Task succesfully added", "");
         }
         else {
-            task.deadline = (newDate === "" ? task.deadline : newDate);
+            task.deadline = newDate//(newDate === "" ? task.deadline : newDate);
             task.priority = priority;
             task.description = (desc.setDesc.toString() === "" ? task.description : desc.setDesc.toString());
+            toastr["success"]("Task succesfully updated", "");
         }
         onClose();
     };
@@ -67,8 +73,11 @@ export default function SimpleDialog(props) {
             titleValid = (setTitle === "" ? false : checkTitles(setTitle));
             // titleValid ? "" : ()
         }
-        console.log("Validating form!")
-        return (titleValid && (newDesc !== "") && (newDate !== "") && (priority !== ""))
+        // console.log("Validating form!")
+        // console.log((titleValid))
+        // console.log(desc.setDesc.toString() !== "")
+        // console.log(newDate)
+        return (titleValid && (desc.setDesc.toString() !== "") && (newDate !== "") && (priority !== ""))
     }
 
     const titleError = newTitle.name === "";
@@ -149,7 +158,10 @@ export default function SimpleDialog(props) {
                     onClick={handleClose}>{title}</Button>
             <Button variant="contained" color="error" 
                     startIcon={<Icon className={"fa fa-ban"} />}
-                    onClick={onClose}>Cancel</Button>
+                    onClick={() => {
+                        desc.setDesc = "";
+                        newTitle.name = "";
+                        onClose()}}>Cancel</Button>
         </Stack>
       </Dialog>
     );
